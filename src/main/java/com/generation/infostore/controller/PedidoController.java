@@ -1,5 +1,6 @@
 package com.generation.infostore.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,7 +111,28 @@ public class PedidoController {
 		
 	}
 	
+	// Consulta pelo valor maior do que o valor digitado em ordem crescente - Extra
 	
+	@GetMapping("/valor_maior/{valor}")
+	public ResponseEntity<List<Pedido>> getAllValorMaiorQue(@PathVariable BigDecimal valor){ 
+		return ResponseEntity.ok(pedidoRepository.findAllByValorGreaterThanOrderByValor(valor));
+		
+		// SELECT * FROM tb_pedidos WHERE valor > valor ORDER BY valor;
+		
+	}
+	
+	// Consulta pelo valor menor do que o valor digitado em ordem decrescente - Extra
+	
+	@GetMapping("/valor_menor/{valor}")
+	public ResponseEntity<List<Pedido>> getAllValorMenorQue(@PathVariable BigDecimal valor){ 
+		return ResponseEntity.ok(pedidoRepository.findAllByValorLessThanOrderByValorDesc(valor));
+		
+		// SELECT * FROM tb_pedidos WHERE valor < valor ORDER BY valor DESC;
+		
+	}
+			
+	
+			
 	
 	
 	

@@ -92,5 +92,14 @@ public class ClienteController {
 		// DELETE FROM tb_clientes WHERE id = ?;
 		
 	}
+	
+	// Consulta pelo Email do cliente digitado - Extra
+	@GetMapping("/email/{email}")
+	public ResponseEntity<List<Cliente>> getAllByEmail(@PathVariable String email){
+		return ResponseEntity.ok(clienteRepository.findAllByEmailContainingIgnoreCase(email));
+		
+		// SELECT * FROM tb_clientes WHERE email LIKE "%?%";
+	
+	} 
 
 }
